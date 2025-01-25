@@ -1,6 +1,8 @@
 // src/pages/LandingPage.jsx
 import { motion } from 'framer-motion';
 import { Calendar, Clock } from 'lucide-react';
+import config from '@/config/config';
+import { formatEventDate } from '@/lib/formatEventDate';
 
 const LandingPage = ({ onOpenInvitation }) => (
   <motion.div
@@ -36,19 +38,19 @@ const LandingPage = ({ onOpenInvitation }) => (
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.3 }}
-            className="space-y-6 text-center mb-8"
+            className="flex flex-col justify-center items-center space-y-6 text-center mb-8"
           >
             <div className="inline-flex flex-col items-center space-y-1 bg-white/80 px-6 py-3 rounded-xl">
               <Calendar className="w-5 h-5 text-rose-400" />
               <p className="text-gray-700 font-medium">
-                Sunday, December 24, 2024
+                {formatEventDate(config.event.date, "full")}
               </p>
             </div>
 
             <div className="inline-flex flex-col items-center space-y-1 bg-white/80 px-6 py-3 rounded-xl">
               <Clock className="w-5 h-5 text-rose-400" />
               <p className="text-gray-700 font-medium">
-                15:53 WIB
+                {config.event.time} {config.event.timezone}
               </p>
             </div>
           </motion.div>
@@ -62,9 +64,9 @@ const LandingPage = ({ onOpenInvitation }) => (
           >
             <div className="space-y-2">
               <h1 className="text-4xl md:text-5xl font-serif text-gray-800 leading-tight">
-                Fulan
+                {config.couple?.groomName}
                 <span className="text-rose-400 mx-3">&</span>
-                Fulana
+                {config.couple?.brideName}
               </h1>
               <div className="h-px w-24 mx-auto bg-rose-200" />
             </div>

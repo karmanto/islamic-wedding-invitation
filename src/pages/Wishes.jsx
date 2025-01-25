@@ -33,7 +33,7 @@ export default function Wishes() {
         {
             id: 1,
             name: "John Doe",
-            message: "Wishing you both a lifetime of love, laughter, and happiness! 🎉",
+            message: "Wishing you both a lifetime of love, laughter, and happiness! 🎉 ",
             timestamp: "2024-12-24T23:20:00Z",
             attending: "attending"
         },
@@ -97,7 +97,7 @@ export default function Wishes() {
             <div className="absolute top-0 right-0 w-96 h-96 bg-rose-100/20 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2" />
             <div className="absolute bottom-0 left-0 w-96 h-96 bg-pink-100/20 rounded-full blur-3xl -translate-x-1/2 translate-y-1/2" />
 
-            <div className="container mx-auto px-4 py-20 relative z-10">
+            <div className="container mx-auto px-4 py-10 relative z-10">
                 {/* Section Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -140,7 +140,7 @@ export default function Wishes() {
                 <div className="max-w-2xl mx-auto space-y-6">
                     <AnimatePresence>
                         <Marquee speed={20}
-                            gradient={false}
+                            gradient="false"
                             className="[--duration:20s] py-2">
                             {wishes.map((wish, index) => (
                                 <motion.div
@@ -309,8 +309,8 @@ export default function Wishes() {
                                 <motion.button
                                     whileHover={{ scale: 1.02 }}
                                     whileTap={{ scale: 0.98 }}
-                                    className={`flex items-center space-x-2 px-6 py-2.5 rounded-xl text-white font-medium transition-all duration-200
-                    ${isSubmitting
+                                    className={`flex items-center space-x-2 px-3 py-2.5 rounded-xl text-white font-medium transition-all duration-200
+                                    ${isSubmitting
                                             ? 'bg-gray-300 cursor-not-allowed'
                                             : 'bg-rose-500 hover:bg-rose-600'}`}
                                 >

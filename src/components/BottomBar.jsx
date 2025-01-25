@@ -3,6 +3,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import {
   Home,
+  Heart,
   CalendarHeart,
   MapPin,
   Gift,
@@ -13,7 +14,7 @@ import { cn } from "@/lib/utils";
 const menuItems = [
   { icon: Home, label: 'Home', href: '#home' },
   { icon: CalendarHeart, label: 'Event', href: '#event' },
-  { icon: MapPin, label: 'Location', href: '#location' },
+  { icon: Heart, label: 'Love Story', href: '#lovestory' },
   { icon: Gift, label: 'Gifts', href: '#gifts' },
   { icon: MessageCircleHeart, label: 'Wishes', href: '#wishes' },
 ];

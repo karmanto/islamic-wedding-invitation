@@ -7,6 +7,12 @@ import { safeBase64 } from '@/lib/base64';
 
 export default function Hero() {
     const [guestName, setGuestName] = useState('');
+    const heartCount = window.innerWidth / 100 * 4;
+    const timezoneOffsets = {
+        WIB: 7,
+        WITA: 8,
+        WIT: 9,
+    };
 
     useEffect(() => {
         // Get guest parameter from URL
@@ -23,12 +29,23 @@ export default function Hero() {
             }
         }
     }, []);
-    const CountdownTimer = ({ targetDate }) => {
-        const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
-        function calculateTimeLeft() {
-            const difference = +new Date(targetDate) - +new Date();
-            let timeLeft = {};
 
+    const CountdownTimer = ({ targetDate, timezone }) => {
+        const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+    
+        function calculateTimeLeft() {
+            const currentUTCDate = new Date();
+            const targetUTCDate = new Date(targetDate);
+    
+            const timezoneOffset = timezoneOffsets[timezone] || 0;
+            const adjustedTargetDate = new Date(
+                targetUTCDate.getTime() - timezoneOffset * 60 * 60 * 1000
+            );
+    
+            const difference = adjustedTargetDate - currentUTCDate;
+    
+            let timeLeft = {};
+    
             if (difference > 0) {
                 timeLeft = {
                     days: Math.floor(difference / (1000 * 60 * 60 * 24)),
@@ -37,15 +54,18 @@ export default function Hero() {
                     seconds: Math.floor((difference / 1000) % 60),
                 };
             }
-
+    
             return timeLeft;
         }
+    
         useEffect(() => {
             const timer = setInterval(() => {
                 setTimeLeft(calculateTimeLeft());
             }, 1000);
+    
             return () => clearInterval(timer);
-        }, [targetDate]);
+        }, [targetDate, timezone]); 
+    
         return (
             <div className="grid grid-cols-4 gap-4 mt-8">
                 {Object.keys(timeLeft).map((interval) => (
@@ -64,10 +84,11 @@ export default function Hero() {
             </div>
         );
     };
+    
     const FloatingHearts = () => {
         return (
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                {[...Array(8)].map((_, i) => (
+                {[...Array(parseInt(heartCount))].map((_, i) => (
                     <motion.div
                         key={i}
                         initial={{
@@ -85,7 +106,7 @@ export default function Hero() {
                         transition={{
                             duration: 4,
                             repeat: Infinity,
-                            delay: i * 0.8,
+                            delay: i * 0.1,
                             ease: "easeOut"
                         }}
                         className="absolute"
@@ -104,7 +125,7 @@ export default function Hero() {
     };
     return (
         <>
-            <section id="home" className="min-h-screen flex flex-col items-center justify-center px-4 py-20 text-center relative overflow-hidden bg-gradient-to-b from-white via-rose-50/30 to-white">
+            <section id="home" className="min-h-screen flex flex-col items-center justify-center px-4 py-10 text-center relative overflow-hidden bg-gradient-to-b from-white via-rose-50/30 to-white">
                 {/* Decorative Background */}
                 <div className="absolute inset-0 overflow-hidden">
                     <div className="absolute top-0 left-0 w-32 h-32 bg-rose-100/50 rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2" />
@@ -117,18 +138,6 @@ export default function Hero() {
                     transition={{ duration: 0.8 }}
                     className="space-y-6 relative z-10"
                 >
-                    {/* Special Date Badge */}
-                    <motion.div
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{ delay: 0.2 }}
-                        className="inline-block mx-auto"
-                    >
-                        <span className="px-4 py-1 text-sm bg-rose-50 text-rose-600 rounded-full border border-rose-200">
-                            Save the Date
-                        </span>
-                    </motion.div>
-
                     {/* Date Display */}
                     <div className="space-y-4">
                         <motion.p
@@ -177,7 +186,7 @@ export default function Hero() {
                                     >
                                         <Calendar className="w-4 h-4 text-rose-400" />
                                         <span className="text-gray-700 font-medium">
-                                            {formatEventDate(config.event.dateTime, "full")}
+                                            {formatEventDate(config.event.date, "full")}
                                         </span>
                                     </motion.div>
 
@@ -232,7 +241,7 @@ export default function Hero() {
                     </motion.div>
 
                     {/* Countdown Timer */}
-                    <CountdownTimer targetDate={config.event.dateTime} />
+                    <CountdownTimer targetDate={config.event.dateTime} timezone={config.event.timezone} />
 
                     {/* Decorative Elements */}
                     <div className="pt-6 relative">

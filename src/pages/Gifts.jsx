@@ -23,7 +23,7 @@ export default function Gifts() {
             <div className="absolute top-0 right-0 w-96 h-96 bg-rose-100/20 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2" />
             <div className="absolute bottom-0 left-0 w-96 h-96 bg-pink-100/20 rounded-full blur-3xl -translate-x-1/2 translate-y-1/2" />
 
-            <div className="container mx-auto px-4 py-20 relative z-10">
+            <div className="container mx-auto px-4 py-10 relative z-10">
                 {/* Section Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -69,14 +69,14 @@ export default function Gifts() {
                         className="space-y-4 max-w-md mx-auto"
                     >
                         {/* Arabic InsyaAllah */}
-                        <p className="font-arabic text-xl text-gray-800">
+                        {/* <p className="font-arabic text-xl text-gray-800">
                             إن شاء الله
-                        </p>
+                        </p> */}
 
                         {/* Main Message */}
-                        <p className="text-gray-600 leading-relaxed">
+                        {/* <p className="text-gray-600 leading-relaxed">
                             God willing, we will distribute all the prizes given to several mosques and institutions in need
-                        </p>
+                        </p> */}
 
                         {/* Arabic Dua */}
                         <div className="space-y-2">

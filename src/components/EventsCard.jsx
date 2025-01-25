@@ -1,5 +1,6 @@
 // EventCard.jsx
 import React, { useState } from 'react';
+import ReactDOM from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Calendar,
@@ -9,11 +10,18 @@ import {
   X,
   Chrome,
   Apple,
-  Calendar as CalendarIcon
+  Calendar as CalendarIcon,
+  Instagram,
+  Facebook,
+  Twitter,
+  Youtube,
 } from 'lucide-react';
+import { formatEventDate } from '@/lib/formatEventDate';
 
 const Modal = ({ isOpen, onClose, children }) => {
-  return (
+  if (typeof window === 'undefined') return null; 
+
+  return ReactDOM.createPortal(
     <AnimatePresence>
       {isOpen && (
         <>
@@ -36,7 +44,8 @@ const Modal = ({ isOpen, onClose, children }) => {
           </motion.div>
         </>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body 
   );
 };
 
@@ -58,17 +67,19 @@ const SingleEventCard = ({ eventData }) => {
   const googleCalendarLink = () => {
     const startDate = new Date(`${eventData.date}T${eventData.startTime}:00`);
     const endDate = new Date(`${eventData.date}T${eventData.endTime}:00`);
+    const location = typeof eventData.location === "string" ? eventData.location : "";
 
     const formatDate = (date) => {
       return date.toISOString().replace(/-|:|\.\d+/g, '');
     };
 
-    return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(eventData.title)}&dates=${formatDate(startDate)}/${formatDate(endDate)}&details=${encodeURIComponent(eventData.description)}&location=${encodeURIComponent(eventData.location)}&ctz=${eventData.timeZone}`;
+    return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(eventData.title)}&dates=${formatDate(startDate)}/${formatDate(endDate)}&details=${encodeURIComponent(eventData.description)}&location=${encodeURIComponent(location)}&ctz=${eventData.timeZone}`;
   };
 
   const generateICSContent = () => {
     const startDate = new Date(`${eventData.date}T${eventData.startTime}:00`);
     const endDate = new Date(`${eventData.date}T${eventData.endTime}:00`);
+    const location = typeof eventData.location === "string" ? eventData.location : "";
 
     const formatICSDate = (date) => {
       return date.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
@@ -82,7 +93,7 @@ DTSTART:${formatICSDate(startDate)}
 DTEND:${formatICSDate(endDate)}
 SUMMARY:${eventData.title}
 DESCRIPTION:${eventData.description}
-LOCATION:${eventData.location}
+LOCATION:${location}
 END:VEVENT
 END:VCALENDAR`;
   };
@@ -96,17 +107,6 @@ END:VCALENDAR`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-  };
-
-  // Format date to readable string
-  const formatDate = (dateStr) => {
-    const date = new Date(dateStr);
-    return date.toLocaleDateString('en-US', {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
   };
 
   return (
@@ -131,16 +131,78 @@ END:VCALENDAR`;
         <div className="space-y-3 text-gray-600">
           <div className="flex items-center space-x-3">
             <Calendar className="w-5 h-5 text-rose-500" />
-            <span>{formatDate(eventData.date)}</span>
+            <span>{formatEventDate(eventData.date, "full")}</span>
           </div>
           <div className="flex items-center space-x-3">
             <Clock className="w-5 h-5 text-rose-500" />
             <span>{eventData.startTime} - {eventData.endTime} WIB</span>
           </div>
-          <div className="flex items-center space-x-3">
-            <MapPin className="w-5 h-5 text-rose-500" />
-            <span>{eventData.location}</span>
-          </div>
+          {
+            typeof eventData.location === "string" ? 
+            <div className="flex items-center space-x-3">
+              <MapPin className="w-5 h-5 text-rose-500" />
+              <span>{eventData.location}</span>
+            </div>
+            :
+            <>
+            {
+              eventData?.location?.instagram &&
+              <div className="flex items-center space-x-3">
+                  <Instagram className="w-5 h-5 text-rose-500" />
+                  <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={() => window.location.href = eventData?.location?.instagram}
+                      className="text-gray-600 hover:text-gray-800"
+                  >
+                      Live Stream Instagram
+                  </motion.button>
+              </div>
+            }
+            {
+              eventData?.location?.youtube &&
+              <div className="flex items-center space-x-3">
+                  <Youtube className="w-5 h-5 text-rose-500" />
+                  <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={() => window.location.href = eventData?.location?.youtube}
+                      className="text-gray-600 hover:text-gray-800"
+                  >
+                      Live Stream Youtube
+                  </motion.button>
+              </div>
+            }
+            {
+              eventData?.location?.facebook &&
+              <div className="flex items-center space-x-3">
+                  <Facebook className="w-5 h-5 text-rose-500" />
+                  <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={() => window.location.href = eventData?.location?.facebook}
+                      className="text-gray-600 hover:text-gray-800"
+                  >
+                      Live Stream Facebook
+                  </motion.button>
+              </div>
+            }
+            {
+              eventData?.location?.twitter &&
+              <div className="flex items-center space-x-3">
+                  <Twitter className="w-5 h-5 text-rose-500" />
+                  <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={() => window.location.href = eventData?.location?.twitter}
+                      className="text-gray-600 hover:text-gray-800"
+                  >
+                      Live Stream Twitter
+                  </motion.button>
+              </div>
+            }
+            </>
+          }
         </div>
       </motion.div>
 
@@ -187,7 +249,7 @@ END:VCALENDAR`;
 };
 
 // Main EventCards component that handles multiple events
-const EventCards = ({ events }) => {
+const EventCards = ({ events, liveStreaming }) => {
   return (
     <div className="space-y-4">
       {events.map((event, index) => (

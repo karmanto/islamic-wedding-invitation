@@ -1,8 +1,65 @@
 import config from "@/config/config";
-import { Clock, Navigation as NavigationIcon, MapPin, CalendarCheck, Phone, ExternalLink } from 'lucide-react'
-import { motion } from 'framer-motion';
+import { Clock, Navigation as NavigationIcon, MapPin, CalendarCheck, Phone, ExternalLink, X, } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion';
+import ReactDOM from 'react-dom';
+import { useState, useEffect } from 'react';
+import { formatEventDate } from '@/lib/formatEventDate';
+
+const Modal = ({ isOpen, onClose, children }) => {
+    if (typeof window === 'undefined') return null; 
+    
+    return ReactDOM.createPortal(
+        <AnimatePresence>
+        {isOpen && (
+            <>
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={onClose}
+                className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[60]"
+            />
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 20 }}
+                className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[70] w-[90%] max-w-sm"
+            >
+                <div className="bg-white transform -translate-x-1/2 -translate-y-1/2 rounded-2xl p-6 shadow-2xl border border-gray-100">
+                {children}
+                </div>
+            </motion.div>
+            </>
+        )}
+        </AnimatePresence>,
+        document.body 
+    );
+};
 
 export default function Location() {
+    const [embed, setEmbed] = useState("");
+    const [direction, setDirection] = useState("");
+    const [showModal, setShowModal] = useState(false);
+
+    useEffect(() => {
+        const regex = /2d(-?\d+\.\d+).*3d(-?\d+\.\d+)/;
+        const srcRgx = `src="([^"]+)"`;
+
+        const match = config.event?.venue?.maps_embed ? config.event.venue.maps_embed.match(regex) : null;
+        const srcMatch = config.event?.venue?.maps_embed ? config.event.venue.maps_embed.match(srcRgx) : null;
+
+        if (srcMatch) {
+            setEmbed(srcMatch[1]);
+        }
+
+        if (match) {
+            const lng = match[1];
+            const lat = match[2];
+            const directionLink = `https://www.google.com/maps/dir//${lat},${lng}`;
+            setDirection(directionLink);
+        }
+    }, [config.event?.venue?.maps_embed]);
+
     return (<>
         {/* Location section */}
         <section id="location" className="min-h-screen relative overflow-hidden bg-gradient-to-b from-white via-rose-50/30 to-white">
@@ -12,7 +69,7 @@ export default function Location() {
                 <div className="absolute bottom-0 left-0 w-64 h-64 bg-pink-100/20 rounded-full blur-3xl -translate-x-1/2 translate-y-1/2" />
             </div>
 
-            <div className="container mx-auto px-4 py-20 relative z-10">
+            <div className="container mx-auto px-4 py-10 relative z-10">
                 {/* Section Header */}
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -61,7 +118,7 @@ export default function Location() {
                         className="w-full h-[400px] rounded-2xl overflow-hidden shadow-lg border-8 border-white"
                     >
                         <iframe
-                            src={config.event.venue.maps_url}
+                            src={embed}
                             width="100%"
                             height="100%"
                             style={{ border: 0 }}
@@ -90,7 +147,7 @@ export default function Location() {
 
                                 <div className="flex items-center space-x-4">
                                     <CalendarCheck className="w-5 h-5 text-rose-500" />
-                                    <p className="text-gray-600">{config.event.venue.date}</p>
+                                    <p className="text-gray-600">{formatEventDate(config.event.venue.date, "full")}</p>
                                 </div>
 
                                 <div className="flex items-center space-x-4">
@@ -106,7 +163,7 @@ export default function Location() {
                                 {/* Action Buttons */}
                                 <div className="grid grid-cols-2 gap-2 pt-4">
                                     <motion.a
-                                        href={config.event.venue.maps_embed}
+                                        href={direction}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         whileHover={{ scale: 1.02 }}
@@ -133,14 +190,78 @@ export default function Location() {
                         </div>
 
                         {/* Additional Info */}
-                        <div className="bg-rose-50/50 rounded-xl p-4 border border-rose-100">
-                            <p className="text-rose-600 text-sm">
-                                <span className="font-medium">Note:</span> Free parking is available for all guests
-                            </p>
-                        </div>
+                        <motion.button
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            onClick={() => setShowModal(true)}
+                            className="text-gray-600 hover:text-gray-800 w-full"
+                        >
+                            <div className="bg-rose-50/50 rounded-xl p-3 border border-rose-100">
+                                <p className="text-rose-600 text-sm text-center">
+                                    <span className="font-medium">Note:</span> Adab Menghadiri Walimah
+                                </p>
+                            </div>
+                        </motion.button>
                     </motion.div>
                 </div>
             </div>
+
+            <Modal
+                isOpen={showModal}
+                onClose={() => setShowModal(false)}
+            >
+                <div className="space-y-6 ">
+                    <div className="flex justify-between  items-center">
+                        <h3 className="text-xl font-semibold text-gray-800">Adab Menghadiri Walimah</h3>
+                        <motion.button
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                        onClick={() => setShowModal(false)}
+                        className="text-gray-500 hover:text-gray-700"
+                        >
+                        <X className="w-5 h-5" />
+                        </motion.button>
+                    </div>
+
+                    <div className="text-center">
+                        <div className="text-sm font-semibold mb-1">
+                            {`Mendoakan keberkahan bagi kedua mempelai`}
+                        </div>
+                        <div className="text-xs mb-2">
+                            {`Salah satu doa yang disunnahkan diucapkan adalah:`}
+                        </div>
+                        <div className="mb-2 text-rose-500">
+                            {`بَارَكَ اللهُ لَكَ وَبَارَكَ عَلَيْكَ وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ`}
+                        </div>
+                        <div className="text-xs italic mb-4">
+                            {`"Semoga Allah memberikan keberkahan kepadamu, memberkahi atasmu, dan mengumpulkan kalian berdua dalam kebaikan". (HR. Abu Daud No.2130)`}
+                        </div>
+
+                        <div className="text-sm font-semibold mb-1">
+                            {`Mendoakan Shohibul Hajat setelah makan`}
+                        </div>
+                        <div className="text-xs mb-2">
+                            {`Diantara doa yang disunnahkan untuk dibaca adalah:`}
+                        </div>
+                        <div className="mb-2 text-rose-500">
+                            {`اللَّهُمَّ اغْفِرْ لَهُمْ وَارْحَمْهُمْ وَبَارِكْ لَهُمْ فِيمَا رَزَقْتَهُمْ وَبَارِكْ لَهُمْ فِيمَا آتَيْتَهُمْ`}
+                        </div>
+                        <div className="text-xs italic mb-4">
+                            {`"Ya Allah, ampunilah mereka, rahmatilah mereka, berkahilah mereka atas apa yang telah Engkau rezekikan kepada mereka, dan berkahilah mereka atas apa yang telah Engkau berikan kepada mereka". (HR. Ahmad IV/188)`}
+                        </div>
+
+                        <div className="text-xs mb-2">
+                            {`Atau boleh pula dengan doa :`}
+                        </div>
+                        <div className="mb-2 text-rose-500">
+                            {`اللَّهُمَّ أَطْعِمْ مَنْ أَطْعَمَنِي، وَاسْقِ مَنْ سَقَانِي`}
+                        </div>
+                        <div className="text-xs italic">
+                            {`"Ya Allah, berilah makan kepada orang yang telah memberi aku makan, dan berilah minum kepada orang yang telah memberi aku minum". (HR. Muslim No 255)`}
+                        </div>
+                    </div>
+                </div>
+            </Modal>
         </section>
     </>)
 }

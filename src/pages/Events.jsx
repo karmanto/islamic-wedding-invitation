@@ -1,7 +1,9 @@
-import EventCards from '@/components/EventsCard'
-import config from '@/config/config'
-import { motion } from 'framer-motion'
-import { Heart } from 'lucide-react'
+import EventCards from '@/components/EventsCard';
+import config from '@/config/config';
+import { motion } from 'framer-motion';
+import {
+    CalendarHeart,
+  } from 'lucide-react';
 
 export default function Events() {
     return (<>
@@ -16,7 +18,7 @@ export default function Events() {
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 transition={{ duration: 0.8 }}
-                className="relative z-10 container mx-auto px-4 py-20"
+                className="relative z-10 container mx-auto px-4 py-10"
             >
                 {/* Section Header */}
                 <motion.div
@@ -61,7 +63,7 @@ export default function Events() {
                     >
                         <div className="h-[1px] w-12 bg-rose-200" />
                         <div className="text-rose-400">
-                            <Heart className="w-4 h-4" fill="currentColor" />
+                            <CalendarHeart className="w-5 h-5 text-rose-400" />
                         </div>
                         <div className="h-[1px] w-12 bg-rose-200" />
                     </motion.div>
@@ -74,9 +76,11 @@ export default function Events() {
                     transition={{ duration: 0.8, delay: 0.6 }}
                     className="max-w-2xl mx-auto"
                 >
-                    <EventCards events={config.eventDetails} />
+                    <EventCards events={config.eventDetails} liveStreaming={config.eventLiveStreaming}/>
                 </motion.div>
             </motion.div>
+
+
 
             {/* Decorative Bottom Pattern */}
             <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent" />
