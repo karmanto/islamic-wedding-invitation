@@ -133,6 +133,149 @@ const config = {
       accountName: 'FULANA',
       logo: '/path/to/mandiri-logo.png'
     }
+  ],
+
+  wishes: [
+    {
+      id: 1,
+      name: "John Doe",
+      message: "Wishing you both a lifetime of love, laughter, and happiness! 🎉 May this special day mark the beginning of an amazing journey together.",
+      timestamp: "2024-12-24T23:20:00Z",
+      attending: "attending"
+    },
+    {
+      id: 2,
+      name: "Natalie",
+      message: "Congratulations on your wedding day! Your love story inspires us all. May your marriage be filled with endless joy and companionship.",
+      timestamp: "2024-12-24T23:20:00Z",
+      attending: "attending"
+    },
+    {
+      id: 3,
+      name: "Muhammad Rifqi",
+      message: "Congratulations on your special day! May Allah bless your union with happiness, health, and prosperity. Amin.",
+      timestamp: "2024-12-25T23:08:09Z",
+      attending: "maybe"
+    },
+    {
+      id: 4,
+      name: "Sarah Johnson",
+      message: "What a beautiful celebration! Your love shines through in everything you do. Wishing you many wonderful years together.",
+      timestamp: "2024-12-25T14:30:00Z",
+      attending: "attending"
+    },
+    {
+      id: 5,
+      name: "David Chen",
+      message: "Your wedding day is just the beginning of a grand adventure. May you always support each other through life's ups and downs.",
+      timestamp: "2024-12-26T08:15:00Z",
+      attending: "not-attending"
+    },
+    {
+      id: 6,
+      name: "Emma Wilson",
+      message: "So happy to witness this beautiful moment! May your love continue to grow stronger with each passing day.",
+      timestamp: "2024-12-26T17:45:00Z",
+      attending: "attending"
+    },
+    {
+      id: 7,
+      name: "Michael Brown",
+      message: "Wishing you both endless happiness and a lifetime of cherished memories. Your love story is truly inspiring!",
+      timestamp: "2024-12-27T12:22:00Z",
+      attending: "maybe"
+    },
+    {
+      id: 8,
+      name: "Lisa Anderson",
+      message: "Your wedding day marks the beginning of a beautiful new chapter. May your love continue to flourish.",
+      timestamp: "2024-12-27T19:05:00Z",
+      attending: "attending"
+    },
+    {
+      id: 9,
+      name: "James Taylor",
+      message: "Congratulations on your special day! Your commitment to each other is truly admirable. Wishing you many happy returns.",
+      timestamp: "2024-12-28T10:10:00Z",
+      attending: "attending"
+    },
+    {
+      id: 10,
+      name: "Olivia Martinez",
+      message: "May your marriage be filled with love, laughter, and countless joyful moments. You make a perfect couple!",
+      timestamp: "2024-12-28T15:30:00Z",
+      attending: "attending"
+    },
+    {
+      id: 11,
+      name: "Robert Garcia",
+      message: "Your wedding day is a celebration of love that inspires everyone around you. Wishing you all the best for the future.",
+      timestamp: "2024-12-29T09:45:00Z",
+      attending: "attending"
+    },
+    {
+      id: 12,
+      name: "Sophia Rodriguez",
+      message: "Congratulations on your marriage! May your life together be filled with endless happiness and mutual understanding.",
+      timestamp: "2024-12-29T14:20:00Z",
+      attending: "attending"
+    },
+    {
+      id: 13,
+      name: "William Hernandez",
+      message: "Your love story is one for the books! Wishing you a lifetime of happiness and companionship.",
+      timestamp: "2024-12-30T11:15:00Z",
+      attending: "not-attending"
+    },
+    {
+      id: 14,
+      name: "Emily Lopez",
+      message: "What a beautiful celebration! Your commitment to each other is truly touching. May your marriage be blessed.",
+      timestamp: "2024-12-30T16:40:00Z",
+      attending: "attending"
+    },
+    {
+      id: 15,
+      name: "Daniel Lee",
+      message: "Congratulations on your special day! Your love gives hope to all of us searching for true companionship.",
+      timestamp: "2024-12-31T08:30:00Z",
+      attending: "maybe"
+    },
+    {
+      id: 16,
+      name: "Megan Walker",
+      message: "Your wedding day marks the beginning of a wonderful journey. May you always cherish each moment together.",
+      timestamp: "2024-12-31T13:25:00Z",
+      attending: "attending"
+    },
+    {
+      id: 17,
+      name: "Christopher Hall",
+      message: "Wishing you both endless happiness and a lifetime of beautiful memories. Your love story is truly inspiring!",
+      timestamp: "2025-01-01T10:15:00Z",
+      attending: "attending"
+    },
+    {
+      id: 18,
+      name: "Ashley Young",
+      message: "Your wedding day is a celebration of love that touches everyone's heart. Wishing you all the best for the future.",
+      timestamp: "2025-01-01T15:50:00Z",
+      attending: "attending"
+    },
+    {
+      id: 19,
+      name: "Matthew King",
+      message: "Congratulations on your marriage! May your life together be filled with love, laughter, and countless joyful moments.",
+      timestamp: "2025-01-02T09:30:00Z",
+      attending: "maybe"
+    },
+    {
+      id: 20,
+      name: "Jessica Wright",
+      message: "Your love story is one for the books! Wishing you a lifetime of happiness and companionship.",
+      timestamp: "2025-01-02T14:40:00Z",
+      attending: "attending"
+    }
   ]
 };
 
