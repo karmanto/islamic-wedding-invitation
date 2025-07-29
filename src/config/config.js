@@ -3,7 +3,7 @@
 const config = {
   // Meta Information
   meta: {
-    title: "Triguna & Izza Wedding",
+    title: "Herman & Putri Wedding",
     description: "We are getting married and would love for you to be a part of our celebration.",
     ogImage: "/images/og-image.jpg",
     favicon: "/images/favicon.ico",
@@ -12,26 +12,25 @@ const config = {
   // Couple Information
   couple: {
     weddingInvitation: "Tanpa mengurangi rasa hormat.\nKami mengundang Bapak/Ibu/Saudara/i\nserta Kerabat sekalian untuk menghadiri\nacara pernikahan kami :",
-    groomName: "Triguna",
-    brideName: "Izza",
-    groomFullName: "dr. Trigunadi Sejahtera",
-    brideFullName: "Fatmawatia Izzati",
+    groomName: "Herman",
+    brideName: "Putri",
+    groomFullName: "Suherman",
+    brideFullName: "Sry Dwi Putri AMD.AK",
     groomImage: "/images/groom.jpg",
     brideImage: "/images/bride.jpg",
     hashtag: "#TriganaIzzaWedding2024",
     groomSibling: "ketiga",
-    groomFather: "Prof.Dr.dr. Sanusi",
-    groomMother: "Prof.Dr.dr. Irmawati",
+    groomFather: "Yatiman رحمه الله",
+    groomMother: "Satiyem رحمها الله",
     brideSibling: "kedua",
-    brideFather: "Ir. Darmawan",
-    brideMother: "Ayu Dewi",
+    brideFather: "Bapak Piato ( abu Rizal)",
+    brideMother: "Ibu Hamidah (Midah)",
   },
 
   galleries: [
     "/galleries/image8.jpg",
     "/galleries/image1.jpg",
     "/galleries/image2.jpg",
-    "/galleries/image3.jpg",
     "/galleries/image4.jpg",
     "/galleries/image5.jpg",
     "/galleries/image6.jpg",
@@ -40,49 +39,36 @@ const config = {
 
   // Event Details
   event: {
-    date: "2025-01-24",
-    time: "10:00",
+    date: "2025-08-03",
+    time: "11:00",
     timezone: "WIB",
-    dateTime: "2025-01-24T10:00:47Z", // ISO 8601 format
+    dateTime: "2025-08-03T11:00:47Z", // ISO 8601 format
     venue: {
       name: "Grand Ballroom, Hotel Majesty",
       address: "Jl. Example Street No. 123, City Name",
-      date: "2025-12-24",
-      time: "10:00 - 17:00 WIB",
+      date: "2025-08-03",
+      time: "11:00 - Selesai",
       phone: "+62 123 4567 890",
-      maps_url: "https://maps.app.goo.gl/rztZVvepvKvg63G28",
-      maps_embed: `<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15926.82271125763!2d98.89800620000001!3d3.6543981!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30314ba146ca72b1%3A0x79d40206bc7bd50e!2sIndomaret%20Pantai%20Labu%20Pekan!5e0!3m2!1sen!2sid!4v1736667827746!5m2!1sen!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`,
+      maps_url: "https://goo.gl/maps/hWFohStpJvnudXF88?g_st=aw",
+      maps_embed: `<iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3795.602380443617!2d98.75048107497284!3d3.524648996449627!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zM8KwMzEnMjguNyJOIDk4wrA0NScxMS4wIkU!5e1!3m2!1sid!2sid!4v1753762249771!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`,
     },
   },
 
   eventDetails: [{
-    title: "Akad Nikah - Triguna & Izza Wedding",
-    date: "2025-12-24",
+    title: "Akad Nikah - Herman & Putri Wedding",
+    date: "2025-08-02",
     startTime: "10:00",
-    endTime: "11:00",
+    endTime: "Selesai",
     timeZone: "Asia/Jakarta",
     location: "Grand Ballroom, Hotel Majesty",
     description: "We invite you to join us in celebrating our wedding ceremony."
   }, {
-    title: "Resepsi Nikah - Triguna & Izza Wedding",
-    date: "2025-12-24",
+    title: "Resepsi Nikah - Herman & Putri Wedding",
+    date: "2025-08-03",
     startTime: "11:00",
-    endTime: "17:00",
+    endTime: "Selesai",
     timeZone: "Asia/Jakarta",
     location: "Grand Ballroom, Hotel Majesty",
-    description: "We invite you to join us in celebrating our wedding ceremony."
-  }, {
-    title: "Live Streaming - Triguna & Izza Wedding",
-    date: "2025-12-24",
-    startTime: "10:00",
-    endTime: "17:00",
-    timeZone: "Asia/Jakarta",
-    location: {
-      instagram: "https://www.instagram.com",
-      youtube: "https://www.youtube.com",
-      facebook: "",
-      twitter: "",
-    },
     description: "We invite you to join us in celebrating our wedding ceremony."
   }],
 

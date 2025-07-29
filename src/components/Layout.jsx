@@ -179,7 +179,7 @@ const Layout = ({ children }) => {
         <main className="relative h-full w-full pb-[100px]">
           {children}
         </main>
-        <BottomBar />
+        {/* <BottomBar /> */}
         {/* Music Info Toast */}
         <AnimatePresence>
           {showToast && (

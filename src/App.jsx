@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-// src/App.jsx
-import { useState } from 'react';
-import { AnimatePresence } from 'framer-motion';
-import Layout from '@/components/Layout';
-import MainContent from '@/pages/MainContent';
-import LandingPage from '@/pages/LandingPage';
-import { Helmet, HelmetProvider } from 'react-helmet-async';
-import config from '@/config/config';
+import { useState } from 'react'
+import { AnimatePresence } from 'framer-motion'
+import Layout from '@/components/Layout'
+import MainContent from '@/pages/MainContent'
+import LandingPage from '@/pages/LandingPage'
+import { Helmet, HelmetProvider } from 'react-helmet-async'
+import config from '@/config/config'
+import { BrowserRouter } from 'react-router-dom'; // Import BrowserRouter
 
 function App() {
   const [isInvitationOpen, setIsInvitationOpen] = useState(false);
@@ -55,15 +55,18 @@ function App() {
         <meta name="theme-color" content="#FDA4AF" /> {/* Rose-300 color */}
       </Helmet>
 
-      <AnimatePresence mode='wait'>
-        {!isInvitationOpen ? (
-          <LandingPage onOpenInvitation={() => setIsInvitationOpen(true)} />
-        ) : (
-          <Layout>
-            <MainContent />
-          </Layout>
-        )}
-      </AnimatePresence>
+      {/* Wrap the entire application content with BrowserRouter */}
+      <BrowserRouter>
+        <AnimatePresence mode='wait'>
+          {!isInvitationOpen ? (
+            <LandingPage onOpenInvitation={() => setIsInvitationOpen(true)} />
+          ) : (
+            <Layout>
+              <MainContent />
+            </Layout>
+          )}
+        </AnimatePresence>
+      </BrowserRouter>
     </HelmetProvider>
   );
 }

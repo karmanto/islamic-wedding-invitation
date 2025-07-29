@@ -15,10 +15,7 @@ export default function MainContent() {
             <WeddingInvitation />
             <Events />
             <Location />
-            <LoveStory />
             <Galery />
-            <Gifts />
-            <Wishes />
         </>
     )
 }

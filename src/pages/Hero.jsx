@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react';
 import config from '@/config/config';
 import { formatEventDate } from '@/lib/formatEventDate';
-import { safeBase64 } from '@/lib/base64';
+import { useLocation } from 'react-router-dom'; // Import useLocation
 
 export default function Hero() {
     const [guestName, setGuestName] = useState('');
@@ -14,21 +14,22 @@ export default function Hero() {
         WIT: 9,
     };
 
-    useEffect(() => {
-        // Get guest parameter from URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const guestParam = urlParams.get('guest');
+    const location = useLocation(); // Get location object from react-router-dom
 
-        if (guestParam) {
-            try {
-                const decodedName = safeBase64.decode(guestParam);
-                setGuestName(decodedName);
-            } catch (error) {
-                console.error('Error decoding guest name:', error);
-                setGuestName('');
-            }
+    useEffect(() => {
+        // Get guest parameter from URL path
+        // Example path: /hari-dan-pasangan
+        const pathSegments = location.pathname.split('/').filter(Boolean); // Split by '/' and remove empty strings
+        const lastSegment = pathSegments[pathSegments.length - 1]; // Get the last segment (e.g., "hari-dan-pasangan")
+
+        if (lastSegment) {
+            // Convert hyphenated string to readable name (e.g., "hari-dan-pasangan" -> "hari dan pasangan")
+            const decodedName = lastSegment.replace(/-/g, ' ');
+            setGuestName(decodedName);
+        } else {
+            setGuestName(''); // Reset if no segment found
         }
-    }, []);
+    }, [location.pathname]); // Re-run effect when path changes
 
     const CountdownTimer = ({ targetDate, timezone }) => {
         const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());

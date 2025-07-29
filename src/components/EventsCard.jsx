@@ -135,74 +135,8 @@ END:VCALENDAR`;
           </div>
           <div className="flex items-center space-x-3">
             <Clock className="w-5 h-5 text-rose-500" />
-            <span>{eventData.startTime} - {eventData.endTime} WIB</span>
+            <span>{eventData.startTime} - {eventData.endTime}</span>
           </div>
-          {
-            typeof eventData.location === "string" ? 
-            <div className="flex items-center space-x-3">
-              <MapPin className="w-5 h-5 text-rose-500" />
-              <span>{eventData.location}</span>
-            </div>
-            :
-            <>
-            {
-              eventData?.location?.instagram &&
-              <div className="flex items-center space-x-3">
-                  <Instagram className="w-5 h-5 text-rose-500" />
-                  <motion.button
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      onClick={() => window.location.href = eventData?.location?.instagram}
-                      className="text-gray-600 hover:text-gray-800"
-                  >
-                      Live Stream Instagram
-                  </motion.button>
-              </div>
-            }
-            {
-              eventData?.location?.youtube &&
-              <div className="flex items-center space-x-3">
-                  <Youtube className="w-5 h-5 text-rose-500" />
-                  <motion.button
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      onClick={() => window.location.href = eventData?.location?.youtube}
-                      className="text-gray-600 hover:text-gray-800"
-                  >
-                      Live Stream Youtube
-                  </motion.button>
-              </div>
-            }
-            {
-              eventData?.location?.facebook &&
-              <div className="flex items-center space-x-3">
-                  <Facebook className="w-5 h-5 text-rose-500" />
-                  <motion.button
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      onClick={() => window.location.href = eventData?.location?.facebook}
-                      className="text-gray-600 hover:text-gray-800"
-                  >
-                      Live Stream Facebook
-                  </motion.button>
-              </div>
-            }
-            {
-              eventData?.location?.twitter &&
-              <div className="flex items-center space-x-3">
-                  <Twitter className="w-5 h-5 text-rose-500" />
-                  <motion.button
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      onClick={() => window.location.href = eventData?.location?.twitter}
-                      className="text-gray-600 hover:text-gray-800"
-                  >
-                      Live Stream Twitter
-                  </motion.button>
-              </div>
-            }
-            </>
-          }
         </div>
       </motion.div>
 

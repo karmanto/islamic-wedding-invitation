@@ -109,7 +109,7 @@ export default function Location() {
                 </motion.div>
 
                 {/* Location Content */}
-                <div className="max-w-6xl mx-auto grid md:grid-row-2 gap-8 items-center">
+                <div className="max-w-6xl mx-auto grid md:grid-row-2 gap-4 items-center">
                     {/* Map Container */}
                     <motion.div
                         initial={{ opacity: 0, x: -50 }}
@@ -136,56 +136,32 @@ export default function Location() {
                         transition={{ duration: 0.8 }}
                         className="space-y-6"
                     >
-                        <div className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100">
-                            <h3 className="text-2xl font-serif text-gray-800 mb-6">{config.event.venue.name}</h3>
+                        <div className="space-y-4">
+                            {/* Action Buttons */}
+                            <div className="grid grid-cols-2 gap-2 pt-4">
+                                <motion.a
+                                    href={direction}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    whileHover={{ scale: 1.02 }}
+                                    whileTap={{ scale: 0.98 }}
+                                    className="flex items-center justify-center gap-1.5 bg-rose-500 text-white px-4 py-2 rounded-lg hover:bg-rose-600 transition-colors text-sm"
+                                >
+                                    <NavigationIcon className="w-3.5 h-3.5" />
+                                    <span>Directions</span>
+                                </motion.a>
 
-                            <div className="space-y-4">
-                                <div className="flex items-start space-x-4">
-                                    <MapPin className="w-5 h-5 text-rose-500 mt-1" />
-                                    <p className="text-gray-600 flex-1">{config.event.venue.address}</p>
-                                </div>
-
-                                <div className="flex items-center space-x-4">
-                                    <CalendarCheck className="w-5 h-5 text-rose-500" />
-                                    <p className="text-gray-600">{formatEventDate(config.event.venue.date, "full")}</p>
-                                </div>
-
-                                <div className="flex items-center space-x-4">
-                                    <Clock className="w-5 h-5 text-rose-500" />
-                                    <p className="text-gray-600">{config.event.venue.time}</p>
-                                </div>
-
-                                <div className="flex items-center space-x-4">
-                                    <Phone className="w-5 h-5 text-rose-500" />
-                                    <p className="text-gray-600">{config.event.venue.phone}</p>
-                                </div>
-
-                                {/* Action Buttons */}
-                                <div className="grid grid-cols-2 gap-2 pt-4">
-                                    <motion.a
-                                        href={direction}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        whileHover={{ scale: 1.02 }}
-                                        whileTap={{ scale: 0.98 }}
-                                        className="flex items-center justify-center gap-1.5 bg-rose-500 text-white px-4 py-2 rounded-lg hover:bg-rose-600 transition-colors text-sm"
-                                    >
-                                        <NavigationIcon className="w-3.5 h-3.5" />
-                                        <span>Directions</span>
-                                    </motion.a>
-
-                                    <motion.a
-                                        href={config.event.venue.maps_url}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        whileHover={{ scale: 1.02 }}
-                                        whileTap={{ scale: 0.98 }}
-                                        className="flex items-center justify-center gap-1.5 bg-white text-gray-600 px-4 py-2 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors text-sm"
-                                    >
-                                        <ExternalLink className="w-3.5 h-3.5" />
-                                        <span>View Map</span>
-                                    </motion.a>
-                                </div>
+                                <motion.a
+                                    href={config.event.venue.maps_url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    whileHover={{ scale: 1.02 }}
+                                    whileTap={{ scale: 0.98 }}
+                                    className="flex items-center justify-center gap-1.5 bg-white text-gray-600 px-4 py-2 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors text-sm"
+                                >
+                                    <ExternalLink className="w-3.5 h-3.5" />
+                                    <span>View Map</span>
+                                </motion.a>
                             </div>
                         </div>
 
