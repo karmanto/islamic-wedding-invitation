@@ -111,7 +111,7 @@ export default function WeddingInvitation() {
                         {/* Groom Info */}
                         <div className="text-center">
                             <h3 className="text-2xl font-medium text-rose-500 mb-2">{config.couple?.groomFullName}</h3>
-                            <p className="text-gray-600">Putra {config.couple?.groomSibling} dari</p>
+                            <p className="text-gray-600">Putra dari</p>
                             <p className="text-gray-700 font-medium">Bapak {config.couple?.groomFather} &</p>
                             <p className="text-gray-700 font-medium">Ibu {config.couple?.groomMother}</p>
                         </div>
@@ -161,7 +161,7 @@ export default function WeddingInvitation() {
                         {/* Bride Info */}
                         <div className="text-center">
                             <h3 className="text-2xl font-medium text-rose-500 mb-3">{config.couple?.brideFullName}</h3>
-                            <p className="text-gray-600">Putri {config.couple?.brideSibling} dari</p>
+                            <p className="text-gray-600">Putri dari</p>
                             <p className="text-gray-700 font-medium">Bapak {config.couple?.brideFather} &</p>
                             <p className="text-gray-700 font-medium">Ibu {config.couple?.brideMother}</p>
                         </div>
